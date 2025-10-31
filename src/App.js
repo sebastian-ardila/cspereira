@@ -1,4 +1,4 @@
-import logo from './Couchsurfing_Pereira_1.png';
+import logo from './Couchsurfing_Pereira_1.webp';
 import { AppContainer, CouchsurfingLogoContainer } from './styled';
 function App() {
   return (
