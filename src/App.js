@@ -157,10 +157,10 @@ function App() {
             }
           }>
             <h3 style={{"margin": "0"}}>en construcción por</h3>
-            <a style={{"color": "white"}} href="" >Harold Romero</a>
-            <a style={{"color": "white"}} href="" >Maribel Obando</a>
-            <a style={{"color": "white"}} href="" >Andres Zuluaga</a>
-            <a style={{"color": "white"}} href="" >Sebastian Ardila</a>
+            <span style={{"color": "white"}}>Harold Romero</span>
+            <span style={{"color": "white"}}>Maribel Obando</span>
+            <span style={{"color": "white"}}>Andres Zuluaga</span>
+            <span style={{"color": "white"}}>Sebastian Ardila</span>
           </div>
       </div>
     </>
