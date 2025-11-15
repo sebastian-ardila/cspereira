@@ -1,259 +1,223 @@
 import logo from './Couchsurfing_Pereira_1.webp';
-import { AppContainer, CouchsurfingLogoContainer, HeroContent, HeroTitle, HeroSubtitle } from './styled';
+import {
+  PageWrapper,
+  NavigationBar,
+  Brand,
+  LogoImage,
+  BrandTitle,
+  NavLinks,
+  NavLink,
+  MainContent,
+  HeroSection,
+  HeroTag,
+  HeroTitle,
+  HeroSubtitle,
+  HeroActions,
+  PrimaryButton,
+  SecondaryButton,
+  HeroPanel,
+  PanelTitle,
+  PanelList,
+  PanelItem,
+  PanelItemTitle,
+  PanelItemText,
+  Section,
+  SectionHeader,
+  SectionTitle,
+  SectionDescription,
+  CardGrid,
+  InfoCard,
+  CardTitle,
+  CardText,
+  Timeline,
+  TimelineItem,
+  TimelineTitle,
+  TimelineMeta,
+  TimelineText,
+  Footer,
+  FooterInner,
+  FooterTitle,
+  FooterNote,
+} from './styled';
 
 function App() {
+  const pilares = [
+    {
+      title: 'Hospitalidad consciente',
+      description:
+        'Diseñamos espacios seguros para que viajeros y anfitriones compartan cultura con respeto y atención a los detalles que hacen única cada visita.',
+    },
+    {
+      title: 'Aprendizaje continuo',
+      description:
+        'Acompañamos a la comunidad con guías, talleres y mentorías que facilitan experiencias significativas dentro y fuera de Pereira.',
+    },
+    {
+      title: 'Red sostenible',
+      description:
+        'Promovemos iniciativas locales, rutas responsables y colaboraciones con proyectos sociales para que cada encuentro tenga impacto positivo.',
+    },
+  ];
+
+  const experiencias = [
+    {
+      title: 'Laboratorio cultural',
+      description:
+        'Sesiones trimestrales donde anfitriones comparten música, gastronomía y relatos para que cada invitado comprenda la esencia cafetera.',
+    },
+    {
+      title: 'Residencias creativas',
+      description:
+        'Programas de cuatro semanas que conectan viajeros con artistas locales para co-crear proyectos fotográficos, audiovisuales y editoriales.',
+    },
+    {
+      title: 'Mapa vivo de recomendaciones',
+      description:
+        'Una base curada por la comunidad con cafés, rutas naturales y experiencias independientes para explorar la ciudad a un ritmo auténtico.',
+    },
+  ];
+
+  const eventos = [
+    {
+      title: 'Encuentro de bienvenida',
+      meta: 'Cada jueves · 7:00 p. m.',
+      description:
+        'Conversaciones íntimas en nuestro apartamento base para orientar a nuevos visitantes, compartir expectativas y planear actividades.',
+    },
+    {
+      title: 'Ruta urbana contemporánea',
+      meta: 'Segundo sábado del mes',
+      description:
+        'Caminata guiada por colectivos de arte, cafés independientes y espacios creativos que muestran el pulso moderno de Pereira.',
+    },
+    {
+      title: 'Mesa redonda de anfitriones',
+      meta: 'Último martes · formato híbrido',
+      description:
+        'Espacio para analizar aprendizajes, revisar protocolos y proponer mejoras en la experiencia Couchsurfing desde la perspectiva local.',
+    },
+  ];
+
   return (
-    <>
-      <AppContainer>
-        <HeroContent>
-          <CouchsurfingLogoContainer
-            src={logo}
-            alt="logo de couchsurfing pereira"
-            width={200}
-            height={200}
-          />
-          <HeroTitle>Couchsurfing Pereira</HeroTitle>
-          <HeroSubtitle>
-            Conectando viajeros y locales en el corazón del Eje Cafetero.
-            Comparte experiencias, descubre cultura y crea amistades que duran toda la vida.
-          </HeroSubtitle>
-        </HeroContent>
-      </AppContainer>
+    <PageWrapper>
+      <NavigationBar>
+        <Brand>
+          <LogoImage src={logo} alt="Logotipo de Couchsurfing Pereira" />
+          <BrandTitle>Couchsurfing Pereira</BrandTitle>
+        </Brand>
+        <NavLinks>
+          <NavLink href="#comunidad">Comunidad</NavLink>
+          <NavLink href="#experiencias">Experiencias</NavLink>
+          <NavLink href="#eventos">Eventos</NavLink>
+        </NavLinks>
+      </NavigationBar>
 
-      {/* Sección Nuestras Costumbres */}
-      <div style={{
-        "width": "100vw",
-        "minHeight": "auto",
-        "background": "#f8f9fa",
-        "display": "flex",
-        "flexDirection": "column",
-        "justifyContent": "center",
-        "alignItems": "center",
-        "padding": "80px 20px"
-      }}>
-        <div style={{
-          "textAlign": "center",
-          "marginBottom": "60px"
-        }}>
-          <h2 style={{
-            "color": "#ff6b35",
-            "fontSize": "clamp(32px, 5vw, 48px)",
-            "fontWeight": "700",
-            "marginBottom": "12px",
-            "margin": "0 0 12px 0"
-          }}>
-            Nuestras Costumbres
-          </h2>
-          <p style={{
-            "color": "#6c757d",
-            "fontSize": "18px",
-            "margin": "0",
-            "maxWidth": "600px"
-          }}>
-            Tradiciones que nos unen como comunidad
-          </p>
-        </div>
-
-        <div style={{
-          "display": "flex",
-          "flexWrap": "wrap",
-          "gap": "30px",
-          "justifyContent": "center",
-          "maxWidth": "1200px"
-        }}>
-          {/* Fiesta de Disfraces */}
-          <div style={{
-            "background": "white",
-            "borderRadius": "16px",
-            "padding": "32px",
-            "boxShadow": "0 4px 20px rgba(0,0,0,0.08)",
-            "minWidth": "280px",
-            "maxWidth": "400px",
-            "transition": "transform 0.3s ease, box-shadow 0.3s ease",
-            "cursor": "pointer",
-            "border": "1px solid rgba(0,0,0,0.05)"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-8px)";
-            e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.12)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
-          }}>
-            <h3 style={{
-              "color": "orangered",
-              "fontSize": "24px",
-              "fontWeight": "600",
-              "marginBottom": "20px",
-              "textAlign": "center"
-            }}>
-              🎭 Fiesta de Disfraces
-            </h3>
-            <div style={{
-              "color": "#333",
-              "fontSize": "16px",
-              "lineHeight": "1.8"
-            }}>
-              <p style={{
-                "fontWeight": "500",
-                "marginBottom": "15px",
-                "color": "orangered"
-              }}>
-                Historial:
-              </p>
-              <ul style={{
-                "listStyle": "none",
-                "padding": "0",
-                "margin": "0"
-              }}>
-                <li style={{"padding": "8px 0", "borderBottom": "1px solid #eee"}}>
-                  🎉 Fiesta de Disfraces 4.0 - 2025
-                </li>
-                <li style={{"padding": "8px 0", "borderBottom": "1px solid #eee"}}>
-                  🎉 Fiesta de Disfraces 3.0 - 2024
-                </li>
-                <li style={{"padding": "8px 0", "borderBottom": "1px solid #eee"}}>
-                  🎉 Fiesta de Disfraces 2.0 - 2023
-                </li>
-                <li style={{"padding": "8px 0"}}>
-                  🎉 Fiesta de Disfraces 1.0 - 2022
-                </li>
-              </ul>
-            </div>
+      <MainContent>
+        <HeroSection>
+          <div>
+            <HeroTag>Comunidad local</HeroTag>
+            <HeroTitle>Explora Pereira acompañado por anfitriones que cuidan cada detalle.</HeroTitle>
+            <HeroSubtitle>
+              Creamos un ecosistema de hospitalidad donde cada visita se convierte en una colaboración. Conecta con guías locales, diseña tu
+              propia agenda y descubre el Eje Cafetero desde una perspectiva contemporánea.
+            </HeroSubtitle>
+            <HeroActions>
+              <PrimaryButton href="#experiencias">Ver programas</PrimaryButton>
+              <SecondaryButton href="#eventos">Calendario comunitario</SecondaryButton>
+            </HeroActions>
           </div>
 
-          {/* Juegos de Volley */}
-          <div style={{
-            "background": "white",
-            "borderRadius": "16px",
-            "padding": "32px",
-            "boxShadow": "0 4px 20px rgba(0,0,0,0.08)",
-            "minWidth": "280px",
-            "maxWidth": "400px",
-            "transition": "transform 0.3s ease, box-shadow 0.3s ease",
-            "cursor": "pointer",
-            "border": "1px solid rgba(0,0,0,0.05)"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-8px)";
-            e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.12)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateY(0)";
-            e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
-          }}>
-            <h3 style={{
-              "color": "orangered",
-              "fontSize": "24px",
-              "fontWeight": "600",
-              "marginBottom": "20px",
-              "textAlign": "center"
-            }}>
-              🏐 Juegos de Volley
-            </h3>
-            <div style={{
-              "color": "#333",
-              "fontSize": "16px",
-              "lineHeight": "1.8",
-              "textAlign": "center"
-            }}>
-              <p>
-                Nos reunimos regularmente para disfrutar de emocionantes partidos de voleibol,
-                fortaleciendo la amistad y el espíritu de equipo en nuestra comunidad.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+          <HeroPanel>
+            <PanelTitle>Nuestro enfoque 2025</PanelTitle>
+            <PanelList>
+              <PanelItem>
+                <PanelItemTitle>54 anfitriones activos</PanelItemTitle>
+                <PanelItemText>
+                  Profesionales, artistas y viajeros recurrentes dispuestos a acompañarte en experiencias a medida.
+                </PanelItemText>
+              </PanelItem>
+              <PanelItem>
+                <PanelItemTitle>Guía urbana actualizada</PanelItemTitle>
+                <PanelItemText>
+                  Recomendaciones curadas cada mes con novedades gastronómicas, rutas naturales y eventos culturales.
+                </PanelItemText>
+              </PanelItem>
+              <PanelItem>
+                <PanelItemTitle>Residencias colaborativas</PanelItemTitle>
+                <PanelItemText>
+                  Programas diseñados para que visitantes compartan habilidades y fortalezcan proyectos comunitarios.
+                </PanelItemText>
+              </PanelItem>
+            </PanelList>
+          </HeroPanel>
+        </HeroSection>
 
-      {/* Footer / En Construcción */}
-      <div style={{
-        "width": "100vw",
-        "minHeight": "auto",
-        "background": "linear-gradient(to bottom, #2c3e50, #34495e)",
-        "display": "flex",
-        "flexDirection": "column",
-        "justifyContent": "center",
-        "alignItems": "center",
-        "padding": "60px 20px",
-        "gap": "32px"
-      }}>
-        <div style={{
-          "textAlign": "center",
-          "color": "white"
-        }}>
-          <h3 style={{
-            "fontSize": "24px",
-            "fontWeight": "600",
-            "margin": "0 0 16px 0",
-            "color": "white"
-          }}>
-            Sitio en Construcción
-          </h3>
-          <p style={{
-            "fontSize": "16px",
-            "margin": "0",
-            "color": "rgba(255,255,255,0.8)"
-          }}>
-            Desarrollado con ❤️ por nuestro equipo
-          </p>
-        </div>
+        <Section id="comunidad">
+          <SectionHeader>
+            <SectionTitle>Cómo construimos comunidad</SectionTitle>
+            <SectionDescription>
+              Un marco curado por voluntarios y aliados que asegura experiencias transparentes, responsables y memorables para quienes nos
+              visitan y quienes reciben.
+            </SectionDescription>
+          </SectionHeader>
+          <CardGrid>
+            {pilares.map((item) => (
+              <InfoCard key={item.title}>
+                <CardTitle>{item.title}</CardTitle>
+                <CardText>{item.description}</CardText>
+              </InfoCard>
+            ))}
+          </CardGrid>
+        </Section>
 
-        <div style={{
-          "display": "flex",
-          "flexWrap": "wrap",
-          "gap": "24px",
-          "justifyContent": "center",
-          "alignItems": "center"
-        }}>
-          {[
-            "Harold Romero",
-            "Maribel Obando",
-            "Andres Zuluaga",
-            "Sebastian Ardila"
-          ].map((name, index) => (
-            <div
-              key={index}
-              style={{
-                "background": "rgba(255,255,255,0.1)",
-                "backdropFilter": "blur(10px)",
-                "borderRadius": "12px",
-                "padding": "16px 24px",
-                "color": "white",
-                "fontSize": "16px",
-                "fontWeight": "500",
-                "border": "1px solid rgba(255,255,255,0.2)",
-                "transition": "all 0.3s ease"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.2)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
-              {name}
-            </div>
-          ))}
-        </div>
+        <Section id="experiencias">
+          <SectionHeader>
+            <SectionTitle>Programas diseñados junto a locales</SectionTitle>
+            <SectionDescription>
+              Seleccionamos experiencias que mezclan cultura contemporánea, naturaleza y colaboración con iniciativas locales para ampliar tus
+              posibilidades durante la estadía.
+            </SectionDescription>
+          </SectionHeader>
+          <CardGrid>
+            {experiencias.map((item) => (
+              <InfoCard key={item.title}>
+                <CardTitle>{item.title}</CardTitle>
+                <CardText>{item.description}</CardText>
+              </InfoCard>
+            ))}
+          </CardGrid>
+        </Section>
 
-        <div style={{
-          "textAlign": "center",
-          "color": "rgba(255,255,255,0.6)",
-          "fontSize": "14px",
-          "marginTop": "24px"
-        }}>
-          © 2025 Couchsurfing Pereira. Todos los derechos reservados.
-        </div>
-      </div>
-    </>
-    
+        <Section id="eventos">
+          <SectionHeader>
+            <SectionTitle>Agenda en tiempo real</SectionTitle>
+            <SectionDescription>
+              Actualizamos nuestro calendario colaborativo con encuentros presenciales e híbridos para que puedas sumarte según tus intereses.
+            </SectionDescription>
+          </SectionHeader>
+          <Timeline>
+            {eventos.map((item) => (
+              <TimelineItem key={item.title}>
+                <TimelineMeta>{item.meta}</TimelineMeta>
+                <TimelineTitle>{item.title}</TimelineTitle>
+                <TimelineText>{item.description}</TimelineText>
+              </TimelineItem>
+            ))}
+          </Timeline>
+        </Section>
+      </MainContent>
+
+      <Footer>
+        <FooterInner>
+          <FooterTitle>Construyamos la próxima experiencia</FooterTitle>
+          <FooterNote>
+            Escríbenos a couchsurfingpereira@gmail.com o envía un mensaje directo en Instagram @couchsurfingpereira para coordinar tu visita.
+          </FooterNote>
+          <FooterNote>© 2025 Couchsurfing Pereira. Todos los derechos reservados.</FooterNote>
+        </FooterInner>
+      </Footer>
+    </PageWrapper>
   );
 }
-
-
 
 export default App;
