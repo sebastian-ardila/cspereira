@@ -7,20 +7,22 @@ import {
   BrandTitle,
   NavLinks,
   NavLink,
+  NavActions,
   MainContent,
   HeroSection,
-  HeroTag,
+  HeroContent,
+  PillGroup,
+  Pill,
   HeroTitle,
   HeroSubtitle,
   HeroActions,
   PrimaryButton,
-  SecondaryButton,
-  HeroPanel,
-  PanelTitle,
-  PanelList,
-  PanelItem,
-  PanelItemTitle,
-  PanelItemText,
+  GhostButton,
+  HeroVisual,
+  VisualCard,
+  VisualBadge,
+  VisualTitle,
+  VisualText,
   Section,
   SectionHeader,
   SectionTitle,
@@ -29,6 +31,10 @@ import {
   InfoCard,
   CardTitle,
   CardText,
+  StatsRow,
+  StatCard,
+  StatValue,
+  StatLabel,
   Timeline,
   TimelineItem,
   TimelineTitle,
@@ -45,56 +51,67 @@ function App() {
     {
       title: 'Hospitalidad consciente',
       description:
-        'Diseñamos espacios seguros para que viajeros y anfitriones compartan cultura con respeto y atención a los detalles que hacen única cada visita.',
+        'Acompañamos cada llegada con anfitriones certificados, perfiles verificados y protocolos claros para sentirte seguro desde el primer mensaje.',
     },
     {
-      title: 'Aprendizaje continuo',
+      title: 'Red creativa',
       description:
-        'Acompañamos a la comunidad con guías, talleres y mentorías que facilitan experiencias significativas dentro y fuera de Pereira.',
+        'Unimos viajeros con artistas, guías y proyectos locales para co-crear experiencias fotográficas, gastronómicas y culturales con impacto.',
     },
     {
-      title: 'Red sostenible',
+      title: 'Movilidad amable',
       description:
-        'Promovemos iniciativas locales, rutas responsables y colaboraciones con proyectos sociales para que cada encuentro tenga impacto positivo.',
+        'Itinerarios verdes, rutas en bici, mapas caminables y recomendaciones curadas para moverte por Pereira al ritmo de su escena contemporánea.',
+    },
+    {
+      title: 'Club de bienestar',
+      description:
+        'Sesiones de yoga, cafés conversatorios y espacios de descanso para reconectar con el territorio y con las personas que lo habitan.',
     },
   ];
 
   const experiencias = [
     {
-      title: 'Laboratorio cultural',
+      title: 'Residencias creativas de cuatro semanas',
       description:
-        'Sesiones trimestrales donde anfitriones comparten música, gastronomía y relatos para que cada invitado comprenda la esencia cafetera.',
+        'Convocatorias trimestrales donde conectamos a visitantes con colectivos locales para desarrollar piezas audiovisuales y talleres abiertos.',
     },
     {
-      title: 'Residencias creativas',
+      title: 'Ruta nocturna de autor',
       description:
-        'Programas de cuatro semanas que conectan viajeros con artistas locales para co-crear proyectos fotográficos, audiovisuales y editoriales.',
+        'Un recorrido reducido por terrazas, coctelerías y galerías independientes para descubrir la ciudad que vibra después de las 7 p. m.',
     },
     {
-      title: 'Mapa vivo de recomendaciones',
+      title: 'Laboratorio caficultor',
       description:
-        'Una base curada por la comunidad con cafés, rutas naturales y experiencias independientes para explorar la ciudad a un ritmo auténtico.',
+        'Experiencia inmersiva en fincas aliadas, catación guiada y prácticas sostenibles junto a familias productoras del Eje Cafetero.',
     },
   ];
 
-  const eventos = [
+  const lineaTiempo = [
     {
-      title: 'Encuentro de bienvenida',
-      meta: 'Cada jueves · 7:00 p. m.',
+      title: 'Registro & bienvenida',
+      meta: 'Día 1 · Contacto dedicado',
       description:
-        'Conversaciones íntimas en nuestro apartamento base para orientar a nuevos visitantes, compartir expectativas y planear actividades.',
+        'Revisión de expectativas, verificación de perfiles y conexión con un anfitrión guía que te acompaña en tu primera semana.',
     },
     {
-      title: 'Ruta urbana contemporánea',
-      meta: 'Segundo sábado del mes',
+      title: 'Agenda personalizada',
+      meta: 'Día 2-3 · Diseño colaborativo',
       description:
-        'Caminata guiada por colectivos de arte, cafés independientes y espacios creativos que muestran el pulso moderno de Pereira.',
+        'Diseñamos un plan a medida mezclando cultura urbana, naturaleza y encuentros con la comunidad Couchsurfing local.',
     },
     {
-      title: 'Mesa redonda de anfitriones',
-      meta: 'Último martes · formato híbrido',
+      title: 'Explora y comparte',
+      meta: 'Durante tu estadía',
       description:
-        'Espacio para analizar aprendizajes, revisar protocolos y proponer mejoras en la experiencia Couchsurfing desde la perspectiva local.',
+        'Participa en rutas, residencias o experiencias espontáneas; cada actividad deja aprendizajes documentados para futuros viajeros.',
+    },
+    {
+      title: 'Cierre y legado',
+      meta: 'Último día',
+      description:
+        'Creamos un registro de recomendaciones, fotos y testimonios para enriquecer el mapa vivo de la comunidad.',
     },
   ];
 
@@ -108,56 +125,68 @@ function App() {
         <NavLinks>
           <NavLink href="#comunidad">Comunidad</NavLink>
           <NavLink href="#experiencias">Experiencias</NavLink>
-          <NavLink href="#eventos">Eventos</NavLink>
+          <NavLink href="#ruta">Cómo funciona</NavLink>
         </NavLinks>
+        <NavActions>
+          <GhostButton href="mailto:couchsurfingpereira@gmail.com">Escríbenos</GhostButton>
+          <PrimaryButton href="#experiencias">Ver agenda</PrimaryButton>
+        </NavActions>
       </NavigationBar>
 
       <MainContent>
         <HeroSection>
-          <div>
-            <HeroTag>Comunidad local</HeroTag>
-            <HeroTitle>Explora Pereira acompañado por anfitriones que cuidan cada detalle.</HeroTitle>
+          <HeroContent>
+            <PillGroup>
+              <Pill>Comunidad curada</Pill>
+              <Pill>Guías locales</Pill>
+              <Pill>Impacto positivo</Pill>
+            </PillGroup>
+            <HeroTitle>
+              Vive Pereira con anfitriones que diseñan experiencias modernas, seguras y memorables.
+            </HeroTitle>
             <HeroSubtitle>
-              Creamos un ecosistema de hospitalidad donde cada visita se convierte en una colaboración. Conecta con guías locales, diseña tu
-              propia agenda y descubre el Eje Cafetero desde una perspectiva contemporánea.
+              Somos la red oficial de Couchsurfing en Pereira. Co-creamos itinerarios boutique, cuidamos la logística y abrimos
+              puertas a proyectos creativos para que tu estadía sea ligera y profunda a la vez.
             </HeroSubtitle>
             <HeroActions>
-              <PrimaryButton href="#experiencias">Ver programas</PrimaryButton>
-              <SecondaryButton href="#eventos">Calendario comunitario</SecondaryButton>
+              <PrimaryButton href="#comunidad">Explorar comunidad</PrimaryButton>
+              <GhostButton href="#ruta">Descubrir el proceso</GhostButton>
             </HeroActions>
-          </div>
+            <StatsRow>
+              <StatCard>
+                <StatValue>+70</StatValue>
+                <StatLabel>anfitriones activos</StatLabel>
+              </StatCard>
+              <StatCard>
+                <StatValue>32</StatValue>
+                <StatLabel>experiencias curadas</StatLabel>
+              </StatCard>
+              <StatCard>
+                <StatValue>4.9★</StatValue>
+                <StatLabel>promedio de reseñas</StatLabel>
+              </StatCard>
+            </StatsRow>
+          </HeroContent>
 
-          <HeroPanel>
-            <PanelTitle>Nuestro enfoque 2025</PanelTitle>
-            <PanelList>
-              <PanelItem>
-                <PanelItemTitle>54 anfitriones activos</PanelItemTitle>
-                <PanelItemText>
-                  Profesionales, artistas y viajeros recurrentes dispuestos a acompañarte en experiencias a medida.
-                </PanelItemText>
-              </PanelItem>
-              <PanelItem>
-                <PanelItemTitle>Guía urbana actualizada</PanelItemTitle>
-                <PanelItemText>
-                  Recomendaciones curadas cada mes con novedades gastronómicas, rutas naturales y eventos culturales.
-                </PanelItemText>
-              </PanelItem>
-              <PanelItem>
-                <PanelItemTitle>Residencias colaborativas</PanelItemTitle>
-                <PanelItemText>
-                  Programas diseñados para que visitantes compartan habilidades y fortalezcan proyectos comunitarios.
-                </PanelItemText>
-              </PanelItem>
-            </PanelList>
-          </HeroPanel>
+          <HeroVisual>
+            <VisualCard>
+              <VisualBadge>Temporada 2025</VisualBadge>
+              <VisualTitle>Mapa vivo de recomendaciones</VisualTitle>
+              <VisualText>
+                Cafés de autor, terrazas secretas, residencias creativas y rutas verdes diseñadas para recorrer la ciudad a tu ritmo.
+              </VisualText>
+              <VisualText>
+                Únete al chat comunitario para recibir alertas de eventos espontáneos y abrir nuevas colaboraciones.
+              </VisualText>
+            </VisualCard>
+          </HeroVisual>
         </HeroSection>
 
         <Section id="comunidad">
           <SectionHeader>
-            <SectionTitle>Cómo construimos comunidad</SectionTitle>
+            <SectionTitle>Comunidad que cuida y crea</SectionTitle>
             <SectionDescription>
-              Un marco curado por voluntarios y aliados que asegura experiencias transparentes, responsables y memorables para quienes nos
-              visitan y quienes reciben.
+              Conectamos perfiles verificados, protocolos claros y aliados locales para que cualquier intercambio fluya con respeto y propósito.
             </SectionDescription>
           </SectionHeader>
           <CardGrid>
@@ -172,10 +201,9 @@ function App() {
 
         <Section id="experiencias">
           <SectionHeader>
-            <SectionTitle>Programas diseñados junto a locales</SectionTitle>
+            <SectionTitle>Experiencias insignia 2025</SectionTitle>
             <SectionDescription>
-              Seleccionamos experiencias que mezclan cultura contemporánea, naturaleza y colaboración con iniciativas locales para ampliar tus
-              posibilidades durante la estadía.
+              Programas con cupos limitados, diseñados junto a creadores locales, que mezclan cultura urbana, naturaleza y hospitalidad consciente.
             </SectionDescription>
           </SectionHeader>
           <CardGrid>
@@ -188,15 +216,15 @@ function App() {
           </CardGrid>
         </Section>
 
-        <Section id="eventos">
+        <Section id="ruta">
           <SectionHeader>
-            <SectionTitle>Agenda en tiempo real</SectionTitle>
+            <SectionTitle>Así se vive la ruta Couchsurfing en Pereira</SectionTitle>
             <SectionDescription>
-              Actualizamos nuestro calendario colaborativo con encuentros presenciales e híbridos para que puedas sumarte según tus intereses.
+              Acompañamiento humano, logística simplificada y un archivo colaborativo que crece con cada viajero.
             </SectionDescription>
           </SectionHeader>
           <Timeline>
-            {eventos.map((item) => (
+            {lineaTiempo.map((item) => (
               <TimelineItem key={item.title}>
                 <TimelineMeta>{item.meta}</TimelineMeta>
                 <TimelineTitle>{item.title}</TimelineTitle>
@@ -209,11 +237,11 @@ function App() {
 
       <Footer>
         <FooterInner>
-          <FooterTitle>Construyamos la próxima experiencia</FooterTitle>
+          <FooterTitle>¿Listo para diseñar tu estadía?</FooterTitle>
           <FooterNote>
-            Escríbenos a couchsurfingpereira@gmail.com o envía un mensaje directo en Instagram @couchsurfingpereira para coordinar tu visita.
+            Escríbenos a couchsurfingpereira@gmail.com o envía un mensaje en Instagram @couchsurfingpereira. Respondemos en menos de 24 horas.
           </FooterNote>
-          <FooterNote>© 2025 Couchsurfing Pereira. Todos los derechos reservados.</FooterNote>
+          <FooterNote>© 2025 Couchsurfing Pereira · Comunidad abierta y colaborativa.</FooterNote>
         </FooterInner>
       </Footer>
     </PageWrapper>

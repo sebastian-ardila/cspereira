@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renderiza el nombre de la comunidad', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const brandOccurrences = screen.getAllByText(/Couchsurfing Pereira/i);
+  expect(brandOccurrences.length).toBeGreaterThan(0);
 });
