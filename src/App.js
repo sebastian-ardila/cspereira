@@ -1,60 +1,20 @@
-import logo from './Couchsurfing_Pereira_1.png';
-import { AppContainer, CouchsurfingLogoContainer } from './styled';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Comunidad from './pages/Comunidad';
+
 function App() {
   return (
-    <>
-      <AppContainer>
-        <CouchsurfingLogoContainer 
-          src={logo} 
-          alt="logo de couchsurfing pereira"
-          width={300}
-          height={300}
-        />
-      </AppContainer>
-      <div style={
-        {
-          "width": "100vw", 
-          "height": "100vh", 
-          "background": "white",
-          "display": "flex",
-          "flex-direction": "column",
-          "justifyContent": "center",
-          "alignItems": 'center',
-          "gap": "20px",
-          "color": "white",
-          "fontSize": "20px",
-          "fontWeight": "500"
-        }
-      }>
-          <div style={
-            {
-              "background": "orangered",
-              "borderRadius": "8px",
-              "width": "200px",
-              "padding": "20px",
-              "display": "flex",
-              "flex-direction": "column",
-              "gap": "8px",
-              "justifyContent": "center",
-              "alignItems": "center",
-              "color": "white",
-              "fontSize": "14px",
-              "fontWeight": "300",
-              "lineHeight": 1.8
-            }
-          }>
-            <h3 style={{"margin": "0"}}>en construcción por</h3>
-            <a style={{"color": "white"}} href="" >Harold Romero</a>
-            <a style={{"color": "white"}} href="" >Maribel Obando</a>
-            <a style={{"color": "white"}} href="" >Andres Zuluaga</a>
-            <a style={{"color": "white"}} href="" >Sebastian Ardila</a>
-          </div>
-      </div>
-    </>
-    
+    <HashRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/comunidad" element={<Comunidad />} />
+      </Routes>
+      <Footer />
+    </HashRouter>
   );
 }
-
-
 
 export default App;
