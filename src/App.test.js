@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renderiza el título del hero', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const titulo = screen.getByRole('heading', { level: 1, name: /Couchsurfing/i });
+  expect(titulo).toBeInTheDocument();
+});
+
+test('renderiza el botón de WhatsApp en la sección contacto', () => {
+  render(<App />);
+  const boton = screen.getByText(/Chatear por WhatsApp/i);
+  expect(boton).toBeInTheDocument();
 });
