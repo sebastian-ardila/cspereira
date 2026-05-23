@@ -17,11 +17,6 @@ const drawLine = keyframes`
   to { transform: scaleX(1); }
 `;
 
-const blink = keyframes`
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-`;
-
 const slideDelay = (delay) => css`
   animation: ${slideUp} 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s both;
 `;
@@ -67,36 +62,6 @@ const HeroGrid = styled.div`
     grid-template-columns: 1fr;
     gap: 18px;
   }
-`;
-
-const TopMeta = styled.div`
-  grid-column: 1 / 13;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: ${theme.fonts.mono};
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: ${theme.colors.ink};
-  padding-bottom: 16px;
-  border-bottom: 1px solid ${theme.colors.ink};
-  ${slideDelay(0.1)}
-
-  @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 0.62rem;
-  }
-`;
-
-const Dot = styled.span`
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${theme.colors.orange};
-  margin-right: 8px;
-  animation: ${blink} 1.6s ease-in-out infinite;
 `;
 
 const Eyebrow = styled.div`
@@ -433,11 +398,6 @@ export default function Home() {
       <Hero>
         <GridBg />
         <HeroGrid>
-          <TopMeta>
-            <span><Dot />En vivo · Pereira, Colombia</span>
-            <span>04°48′N · 75°41′W</span>
-          </TopMeta>
-
           <Eyebrow>
             <EyebrowMark />
             Comunidad de viajeros · Edición 2026

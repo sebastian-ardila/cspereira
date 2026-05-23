@@ -38,14 +38,10 @@ const LogoMark = styled(Link)`
 `;
 
 const LogoImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
   display: block;
   object-fit: contain;
-  border-radius: 50%;
-  background: ${theme.colors.paper};
-  padding: 2px;
-  border: 1.5px solid ${theme.colors.ink};
   transition: transform 0.2s ease;
 
   ${LogoMark}:hover & {
@@ -53,8 +49,8 @@ const LogoImg = styled.img`
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    width: 34px;
-    height: 34px;
+    width: 52px;
+    height: 52px;
   }
 `;
 
