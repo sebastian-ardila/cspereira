@@ -17,7 +17,7 @@ const Bar = styled.nav`
   transition: background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
   background: ${(p) => (p.$scrolled ? 'rgba(250, 250, 247, 0.88)' : 'transparent')};
   backdrop-filter: ${(p) => (p.$scrolled ? 'blur(14px)' : 'none')};
-  border-bottom: 2px solid ${(p) => (p.$scrolled ? theme.colors.ink : 'transparent')};
+  border-bottom: none;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
     padding: 14px 18px;
