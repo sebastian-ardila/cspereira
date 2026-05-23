@@ -10,7 +10,7 @@ const Bar = styled.nav`
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 20px 32px;
+  padding: 10px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,8 +38,8 @@ const LogoMark = styled(Link)`
 `;
 
 const LogoImg = styled.img`
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   display: block;
   object-fit: contain;
   transition: transform 0.2s ease;
@@ -49,14 +49,9 @@ const LogoImg = styled.img`
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    width: 52px;
-    height: 52px;
+    width: 72px;
+    height: 72px;
   }
-`;
-
-const LogoBadge = styled.span`
-  color: ${theme.colors.orange};
-  font-weight: 700;
 `;
 
 const Links = styled.div`
@@ -132,7 +127,6 @@ export default function Nav() {
     <Bar $scrolled={scrolled}>
       <LogoMark to="/" $onLight={onLight}>
         <LogoImg src={logo} alt="Couchsurfing Pereira" />
-        <LogoBadge>Vol.01</LogoBadge>
       </LogoMark>
       <Links>
         <NavLink to="/" $onLight={onLight}>Inicio</NavLink>
