@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from '../theme';
+import logo from '../Couchsurfing_Pereira_1.png';
 
 const Bar = styled.nav`
   position: fixed;
@@ -25,31 +26,41 @@ const Bar = styled.nav`
 
 const LogoMark = styled(Link)`
   display: inline-flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   color: ${(p) => (p.$onLight ? theme.colors.ink : theme.colors.paper)};
-  font-family: ${theme.fonts.display};
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
+  font-family: ${theme.fonts.mono};
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 0.18s ease;
+`;
 
-  span:nth-child(2) {
-    font-family: ${theme.fonts.mono};
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: ${theme.colors.orange};
-    letter-spacing: 0.1em;
+const LogoImg = styled.img`
+  width: 40px;
+  height: 40px;
+  display: block;
+  object-fit: contain;
+  border-radius: 50%;
+  background: ${theme.colors.paper};
+  padding: 2px;
+  border: 1.5px solid ${theme.colors.ink};
+  transition: transform 0.2s ease;
+
+  ${LogoMark}:hover & {
+    transform: rotate(-8deg);
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    width: 34px;
+    height: 34px;
   }
 `;
 
-const Dot = styled.span`
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${theme.colors.orange};
-  margin-right: 2px;
-  transform: translateY(-1px);
+const LogoBadge = styled.span`
+  color: ${theme.colors.orange};
+  font-weight: 700;
 `;
 
 const Links = styled.div`
@@ -111,7 +122,9 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const onLight = scrolled || location.pathname !== '/';
+  // Hero de home es claro (paper) → nav oscuro siempre.
+  // Hero de comunidad es oscuro → nav claro hasta scroll; al hacer scroll el bg se vuelve claro y el nav oscuro.
+  const onLight = isHome || scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -122,8 +135,8 @@ export default function Nav() {
   return (
     <Bar $scrolled={scrolled}>
       <LogoMark to="/" $onLight={onLight}>
-        <span><Dot />CP</span>
-        <span>VOL.01</span>
+        <LogoImg src={logo} alt="Couchsurfing Pereira" />
+        <LogoBadge>Vol.01</LogoBadge>
       </LogoMark>
       <Links>
         <NavLink to="/" $onLight={onLight}>Inicio</NavLink>

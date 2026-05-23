@@ -179,123 +179,12 @@ const Paragraph = styled.p`
   max-width: 60ch;
 `;
 
-const BlogWrap = styled.div`
-  grid-column: 1 / 13;
-  margin-top: 24px;
-  border: 2px solid ${theme.colors.ink};
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 12px 12px 0 ${theme.colors.orange};
-  background: ${theme.colors.paper};
-`;
-
-const BlogBar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
-  border-bottom: 2px solid ${theme.colors.ink};
-  background: ${theme.colors.paper};
-  font-family: ${theme.fonts.mono};
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-
-  .dots {
-    display: inline-flex;
-    gap: 8px;
-  }
-
-  .dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: ${theme.colors.ink};
-  }
-
-  .dots span:last-child {
-    background: ${theme.colors.orange};
-  }
-`;
-
-const BlogIframe = styled.iframe`
-  width: 100%;
-  height: 900px;
-  border: 0;
-  display: block;
-  background: white;
-`;
-
-const CrewGrid = styled.div`
-  grid-column: 1 / 13;
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 2px solid ${theme.colors.paper};
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: ${theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const CrewCard = styled.a`
-  display: flex;
-  flex-direction: column;
-  padding: 32px 24px;
-  border-right: 2px solid ${theme.colors.paper};
-  position: relative;
-  min-height: 240px;
-  color: ${theme.colors.paper};
-  transition: background 0.2s ease, color 0.2s ease;
-
-  &:nth-child(4n) {
-    border-right: none;
-  }
-
-  &:hover {
-    background: ${theme.colors.orange};
-    color: ${theme.colors.ink};
-  }
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    border-bottom: 2px solid ${theme.colors.paper};
-
-    &:nth-child(2n) {
-      border-right: none;
-    }
-  }
-`;
-
-const CrewNumber = styled.div`
+const CTANumber = styled.div`
   font-family: ${theme.fonts.mono};
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.6;
-`;
-
-const CrewName = styled.div`
-  font-family: ${theme.fonts.display};
-  font-weight: 700;
-  font-size: 1.6rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin-top: auto;
-  text-transform: uppercase;
-`;
-
-const CrewRole = styled.div`
-  font-family: ${theme.fonts.mono};
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin-top: 8px;
+  color: ${theme.colors.ink};
 `;
 
 const CTASection = styled.section`
@@ -345,13 +234,6 @@ const BackLink = styled(Link)`
   }
 `;
 
-const crew = [
-  { name: 'Harold', last: 'Romero', role: 'Co-fundador', num: '01', link: '#' },
-  { name: 'Maribel', last: 'Obando', role: 'Comunidad', num: '02', link: '#' },
-  { name: 'Andres', last: 'Zuluaga', role: 'Diseño', num: '03', link: '#' },
-  { name: 'Sebastian', last: 'Ardila', role: 'Desarrollo', num: '04', link: '#' },
-];
-
 export default function Comunidad() {
   return (
     <main>
@@ -398,70 +280,9 @@ export default function Comunidad() {
         </SectionInner>
       </SectionWrap>
 
-      <SectionWrap $bg={theme.colors.cream}>
-        <SectionInner>
-          <SectionLabel>
-            <span className="num">02</span>
-            <span>Desde el blog</span>
-          </SectionLabel>
-          <SectionBody>
-            <SectionTitle>
-              Crónicas <em>de ruta</em>.
-            </SectionTitle>
-            <Paragraph>
-              Historias, rutas y momentos que hemos compartido como comunidad.
-            </Paragraph>
-          </SectionBody>
-          <BlogWrap>
-            <BlogBar>
-              <span>couchsurfingpereira.blogspot.com</span>
-              <span className="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </BlogBar>
-            <BlogIframe
-              title="Blog de Couchsurfing Pereira"
-              src="https://couchsurfingpereira.blogspot.com/2023/09/salento-ruta-circular.html"
-            />
-          </BlogWrap>
-        </SectionInner>
-      </SectionWrap>
-
-      <SectionWrap $bg={theme.colors.ink} $fg={theme.colors.paper}>
-        <SectionInner>
-          <SectionLabel $fg={theme.colors.paper}>
-            <span className="num">03</span>
-            <span style={{ color: theme.colors.paper, opacity: 0.7 }}>El crew</span>
-          </SectionLabel>
-          <SectionBody>
-            <SectionTitle>
-              Construido <em>por</em>.
-            </SectionTitle>
-            <Paragraph style={{ color: 'rgba(250,250,247,0.75)' }}>
-              Cuatro humanos que decidieron darle forma digital a la comunidad.
-            </Paragraph>
-          </SectionBody>
-          <CrewGrid>
-            {crew.map((person) => (
-              <CrewCard key={person.num} href={person.link}>
-                <CrewNumber>N° {person.num}</CrewNumber>
-                <CrewName>
-                  {person.name}
-                  <br />
-                  {person.last}
-                </CrewName>
-                <CrewRole>{person.role}</CrewRole>
-              </CrewCard>
-            ))}
-          </CrewGrid>
-        </SectionInner>
-      </SectionWrap>
-
       <CTASection>
         <CTAInner>
-          <CrewNumber style={{ color: theme.colors.ink }}>→ 04 / Únete</CrewNumber>
+          <CTANumber>→ 02 / Únete</CTANumber>
           <CTATitle>
             Tu turno<br />de entrar.
           </CTATitle>

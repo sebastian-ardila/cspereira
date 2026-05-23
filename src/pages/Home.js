@@ -124,11 +124,13 @@ const Title = styled.h1`
   grid-column: 1 / 13;
   font-family: ${theme.fonts.display};
   font-weight: 800;
-  font-size: clamp(4rem, 17vw, 16rem);
-  line-height: 0.82;
-  letter-spacing: -0.045em;
+  font-size: clamp(3rem, 11.2vw, 10.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.055em;
   margin: 24px 0 0;
   text-transform: uppercase;
+  word-break: break-word;
+  overflow-wrap: anywhere;
   ${slideDelay(0.3)}
 
   .line1 {
@@ -145,7 +147,7 @@ const Title = styled.h1`
 
     @media (max-width: ${theme.breakpoints.mobile}) {
       -webkit-text-stroke: 1px ${theme.colors.ink};
-      margin-left: 12vw;
+      margin-left: 10vw;
     }
   }
 
