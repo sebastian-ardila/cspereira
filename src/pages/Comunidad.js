@@ -179,6 +179,48 @@ const Paragraph = styled.p`
   max-width: 60ch;
 `;
 
+const Requirement = styled.div`
+  margin-top: 8px;
+  padding: 24px 28px;
+  border-left: 6px solid ${theme.colors.orange};
+  background: ${theme.colors.paper};
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 60ch;
+`;
+
+const RequirementLabel = styled.div`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: ${theme.colors.orange};
+  font-weight: 700;
+`;
+
+const RequirementText = styled.p`
+  font-family: ${theme.fonts.display};
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: ${theme.colors.ink};
+
+  a {
+    color: ${theme.colors.orange};
+    border-bottom: 2px solid ${theme.colors.orange};
+    padding-bottom: 1px;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: ${theme.colors.orange};
+      color: ${theme.colors.paper};
+    }
+  }
+`;
+
 const CTANumber = styled.div`
   font-family: ${theme.fonts.mono};
   font-size: 0.78rem;
@@ -276,6 +318,20 @@ export default function Comunidad() {
               La comunidad es abierta y gratuita. Si te interesa hospedar, viajar,
               o simplemente unirte a un próximo evento, contáctanos por WhatsApp.
             </Paragraph>
+            <Requirement>
+              <RequirementLabel>· Único requisito</RequirementLabel>
+              <RequirementText>
+                Que hagas parte de la comunidad global de{' '}
+                <a
+                  href="https://www.couchsurfing.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Couchsurfing
+                </a>
+                .
+              </RequirementText>
+            </Requirement>
           </SectionBody>
         </SectionInner>
       </SectionWrap>
