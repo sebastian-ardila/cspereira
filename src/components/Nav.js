@@ -14,13 +14,19 @@ const Bar = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
+  gap: 16px;
+  transition: background 0.25s ease, backdrop-filter 0.25s ease;
   background: ${(p) => (p.$scrolled ? 'rgba(250, 250, 247, 0.88)' : 'transparent')};
   backdrop-filter: ${(p) => (p.$scrolled ? 'blur(14px)' : 'none')};
   border-bottom: none;
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 10px 20px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 14px 18px;
+    padding: 8px 14px;
+    gap: 10px;
   }
 `;
 
@@ -48,9 +54,14 @@ const LogoImg = styled.img`
     transform: rotate(-8deg);
   }
 
-  @media (max-width: ${theme.breakpoints.mobile}) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     width: 72px;
     height: 72px;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    width: 56px;
+    height: 56px;
   }
 `;
 
@@ -59,8 +70,12 @@ const Links = styled.div`
   align-items: center;
   gap: 28px;
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    gap: 18px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    gap: 14px;
+    gap: 12px;
   }
 `;
 
@@ -72,6 +87,7 @@ const baseLinkStyle = `
   text-transform: uppercase;
   position: relative;
   padding: 4px 0;
+  white-space: nowrap;
   transition: color 0.18s ease;
 
   &::after {
@@ -87,6 +103,11 @@ const baseLinkStyle = `
 
   &:hover::after {
     width: 100%;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
   }
 `;
 

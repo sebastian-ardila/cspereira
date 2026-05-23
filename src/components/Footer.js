@@ -7,6 +7,15 @@ const Wrapper = styled.footer`
   color: ${theme.colors.paper};
   padding: 56px 32px 32px;
   border-top: 12px solid ${theme.colors.orange};
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 48px 20px 28px;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 40px 16px 24px;
+    border-top-width: 8px;
+  }
 `;
 
 const Inner = styled.div`
@@ -26,8 +35,8 @@ const Inner = styled.div`
 const Big = styled.div`
   font-family: ${theme.fonts.display};
   font-weight: 800;
-  font-size: clamp(2.4rem, 7vw, 5.5rem);
-  line-height: 0.9;
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  line-height: 0.92;
   letter-spacing: -0.03em;
   text-transform: uppercase;
 

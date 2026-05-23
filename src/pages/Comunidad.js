@@ -11,8 +11,13 @@ const Hero = styled.section`
   overflow: hidden;
   border-bottom: 12px solid ${theme.colors.orange};
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 140px 20px 64px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 130px 18px 60px;
+    padding: 120px 16px 48px;
+    border-bottom-width: 8px;
   }
 `;
 
@@ -60,8 +65,8 @@ const HeroTitle = styled.h1`
   grid-column: 1 / 13;
   font-family: ${theme.fonts.display};
   font-weight: 800;
-  font-size: clamp(3rem, 11vw, 10rem);
-  line-height: 0.86;
+  font-size: clamp(2.4rem, 11vw, 10rem);
+  line-height: 0.9;
   letter-spacing: -0.04em;
   margin: 16px 0 32px;
   text-transform: uppercase;
@@ -103,8 +108,12 @@ const SectionWrap = styled.section`
   background: ${(p) => p.$bg || theme.colors.paper};
   color: ${(p) => p.$fg || theme.colors.ink};
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 96px 20px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 80px 18px;
+    padding: 72px 16px;
   }
 `;
 
@@ -142,6 +151,18 @@ const SectionLabel = styled.div`
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 14px;
+
+    .num {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
   }
 `;
 
@@ -236,8 +257,12 @@ const CTASection = styled.section`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 96px 20px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 80px 18px;
+    padding: 72px 16px;
   }
 `;
 
@@ -253,8 +278,8 @@ const CTAInner = styled.div`
 const CTATitle = styled.h2`
   font-family: ${theme.fonts.display};
   font-weight: 800;
-  font-size: clamp(3rem, 10vw, 9rem);
-  line-height: 0.85;
+  font-size: clamp(2.6rem, 10vw, 9rem);
+  line-height: 0.9;
   letter-spacing: -0.04em;
   margin: 0;
   text-transform: uppercase;

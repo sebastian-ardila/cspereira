@@ -32,8 +32,12 @@ const Hero = styled.section`
   justify-content: space-between;
   overflow: hidden;
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 110px 20px 0;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 100px 18px 0;
+    padding: 100px 16px 0;
   }
 `;
 
@@ -76,6 +80,13 @@ const Eyebrow = styled.div`
   align-items: center;
   gap: 14px;
   ${slideDelay(0.2)}
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    margin-top: 20px;
+    gap: 10px;
+  }
 `;
 
 const EyebrowMark = styled.span`
@@ -89,21 +100,21 @@ const Title = styled.h1`
   grid-column: 1 / 13;
   font-family: ${theme.fonts.display};
   font-weight: 800;
-  font-size: clamp(3rem, 11.2vw, 10.5rem);
-  line-height: 0.85;
+  font-size: clamp(2.2rem, 11vw, 10.5rem);
+  line-height: 0.88;
   letter-spacing: -0.055em;
   margin: 24px 0 0;
   text-transform: uppercase;
-  word-break: break-word;
-  overflow-wrap: anywhere;
   ${slideDelay(0.3)}
 
   .line1 {
     display: block;
+    white-space: nowrap;
   }
 
   .line2 {
     display: block;
+    white-space: nowrap;
     -webkit-text-stroke: 2px ${theme.colors.ink};
     color: transparent;
     font-style: italic;
@@ -112,7 +123,7 @@ const Title = styled.h1`
 
     @media (max-width: ${theme.breakpoints.mobile}) {
       -webkit-text-stroke: 1px ${theme.colors.ink};
-      margin-left: 10vw;
+      margin-left: 8vw;
     }
   }
 
@@ -142,7 +153,8 @@ const Lower = styled.div`
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 28px;
+    margin-top: 32px;
   }
 `;
 
@@ -226,6 +238,12 @@ const CTA = styled.a`
     transform: translate(-3px, -3px);
     box-shadow: 9px 9px 0 ${theme.colors.ink};
   }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 14px 20px;
+    font-size: 0.78rem;
+    box-shadow: 5px 5px 0 ${theme.colors.orange};
+  }
 `;
 
 const Marquee = styled.div`
@@ -241,9 +259,17 @@ const Marquee = styled.div`
   margin-right: -32px;
   padding: 18px 0;
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: 56px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    margin-left: -18px;
-    margin-right: -18px;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: 48px;
+    padding: 14px 0;
   }
 `;
 
@@ -278,8 +304,12 @@ const Contacto = styled.section`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: 96px 20px;
+  }
+
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 96px 18px;
+    padding: 72px 16px;
   }
 `;
 

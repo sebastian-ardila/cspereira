@@ -38,6 +38,18 @@ const Button = styled.a`
     height: 20px;
     fill: currentColor;
   }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 16px 22px;
+    font-size: 0.78rem;
+    gap: 10px;
+    box-shadow: 5px 5px 0 ${theme.colors.ink};
+
+    svg {
+      width: 17px;
+      height: 17px;
+    }
+  }
 `;
 
 const Arrow = styled.span`
