@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../theme';
 
-const WHATSAPP_NUMBER = '573177822100';
+const WHATSAPP_NUMBER = '573114023418';
 
 const Button = styled.a`
   display: inline-flex;

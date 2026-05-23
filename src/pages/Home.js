@@ -492,7 +492,7 @@ export default function Home() {
                 label="Hablar por WhatsApp"
                 message="¡Hola! Me gustaría saber más sobre Couchsurfing Pereira."
               />
-              <NumberPill>+57 317 782 2100</NumberPill>
+              <NumberPill>+57 311 402 3418</NumberPill>
             </ContactoRow>
           </ContactoBody>
         </ContactoInner>
