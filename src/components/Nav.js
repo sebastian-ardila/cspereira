@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from '../theme';
 import logo from '../Couchsurfing_Pereira_1.png';
@@ -133,6 +133,7 @@ const NavAnchor = styled.a`
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
   // Hero de home es claro (paper) → nav oscuro siempre.
   // Hero de comunidad es oscuro → nav claro hasta scroll; al hacer scroll el bg se vuelve claro y el nav oscuro.
@@ -144,6 +145,15 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const handleContacto = (e) => {
+    e.preventDefault();
+    if (isHome) {
+      document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/', { state: { scrollTo: 'contacto' } });
+    }
+  };
+
   return (
     <Bar $scrolled={scrolled}>
       <LogoMark to="/" $onLight={onLight}>
@@ -152,11 +162,7 @@ export default function Nav() {
       <Links>
         <NavLink to="/" $onLight={onLight}>Inicio</NavLink>
         <NavLink to="/comunidad" $onLight={onLight}>Comunidad</NavLink>
-        {isHome ? (
-          <NavAnchor href="#contacto" $onLight={onLight}>Contacto</NavAnchor>
-        ) : (
-          <NavLink to="/#contacto" $onLight={onLight}>Contacto</NavLink>
-        )}
+        <NavAnchor onClick={handleContacto} $onLight={onLight}>Contacto</NavAnchor>
       </Links>
     </Bar>
   );

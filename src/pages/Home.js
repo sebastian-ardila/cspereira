@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled, { keyframes, css } from 'styled-components';
 import { theme } from '../theme';
 import WhatsAppButton from '../components/WhatsAppButton';
@@ -423,6 +425,28 @@ const OrangeStripe = styled.div`
 `;
 
 export default function Home() {
+  const location = useLocation();
+
+  // Si llegamos a "/" pidiendo scroll a una sección (ej. desde el Nav en /comunidad),
+  // hacemos scroll después de que el componente monte.
+  useEffect(() => {
+    const target = location.state?.scrollTo;
+    if (target) {
+      const el = document.getElementById(target);
+      if (el) {
+        // Pequeño delay para que el layout esté listo
+        requestAnimationFrame(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+    }
+  }, [location.state]);
+
+  const handleCTAClick = (e) => {
+    e.preventDefault();
+    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main>
       <Hero>
@@ -453,7 +477,7 @@ export default function Home() {
 
             <CTABlock>
               <CTANumber>→ 01 / Hablemos</CTANumber>
-              <CTA href="#contacto">
+              <CTA href="#contacto" onClick={handleCTAClick}>
                 Ir a contacto
                 <span>↓</span>
               </CTA>
