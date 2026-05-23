@@ -13,7 +13,7 @@
     "styled-components": "^6.0.7",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://dila93.github.io/cspereira",
+  "homepage": "https://sebastian-ardila.github.io/cspereira",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
