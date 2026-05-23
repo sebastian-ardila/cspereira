@@ -9,6 +9,6 @@ test('renderiza el título del hero', () => {
 
 test('renderiza el botón de WhatsApp en la sección contacto', () => {
   render(<App />);
-  const boton = screen.getByText(/Chatear por WhatsApp/i);
+  const boton = screen.getByText(/Hablar por WhatsApp/i);
   expect(boton).toBeInTheDocument();
 });

@@ -1,20 +1,19 @@
 :root {
-  --midnight: #0B1B2B;
-  --deep-blue: #1E3A5F;
-  --coral: #FF7A6B;
-  --coral-dark: #E8604F;
-  --cream: #F8F4ED;
-  --gold: #C9A87C;
-  --whatsapp: #25D366;
-  --whatsapp-dark: #1DA851;
-  --ink: #1A1A1A;
-  --muted: #6B6B6B;
+  --paper: #FAFAF7;
+  --cream: #F2EDE0;
+  --ink: #0A0A0A;
+  --ink-soft: #1A1A1A;
+  --orange: #FF5A1F;
+  --orange-deep: #E04A14;
+  --orange-flare: #FFB199;
+  --mute: #5C5C5C;
+  --line: #0A0A0A;
 
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
 
-  --max-width: 1200px;
-  --radius: 12px;
+  --max-width: 1400px;
 }
 
 * {
@@ -26,10 +25,11 @@ html, body {
   padding: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background: var(--cream);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 a {
@@ -41,4 +41,9 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: none;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--paper);
 }

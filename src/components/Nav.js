@@ -9,26 +9,47 @@ const Bar = styled.nav`
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 18px 32px;
+  padding: 20px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
-  background: ${(p) => (p.$scrolled ? 'rgba(11, 27, 43, 0.85)' : 'transparent')};
-  backdrop-filter: ${(p) => (p.$scrolled ? 'blur(12px)' : 'none')};
-  border-bottom: 1px solid ${(p) => (p.$scrolled ? 'rgba(248, 244, 237, 0.08)' : 'transparent')};
+  transition: background 0.25s ease, backdrop-filter 0.25s ease, border-color 0.25s ease;
+  background: ${(p) => (p.$scrolled ? 'rgba(250, 250, 247, 0.88)' : 'transparent')};
+  backdrop-filter: ${(p) => (p.$scrolled ? 'blur(14px)' : 'none')};
+  border-bottom: 2px solid ${(p) => (p.$scrolled ? theme.colors.ink : 'transparent')};
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: 14px 20px;
+    padding: 14px 18px;
   }
 `;
 
-const Logo = styled(Link)`
+const LogoMark = styled(Link)`
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  color: ${(p) => (p.$onLight ? theme.colors.ink : theme.colors.paper)};
   font-family: ${theme.fonts.display};
-  font-size: 1.5rem;
-  color: ${theme.colors.cream};
-  font-style: italic;
-  letter-spacing: 0.02em;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+
+  span:nth-child(2) {
+    font-family: ${theme.fonts.mono};
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: ${theme.colors.orange};
+    letter-spacing: 0.1em;
+  }
+`;
+
+const Dot = styled.span`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: ${theme.colors.orange};
+  margin-right: 2px;
+  transform: translateY(-1px);
 `;
 
 const Links = styled.div`
@@ -37,36 +58,52 @@ const Links = styled.div`
   gap: 28px;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    gap: 16px;
+    gap: 14px;
+  }
+`;
+
+const baseLinkStyle = `
+  font-family: ${theme.fonts.mono};
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.18s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: ${theme.colors.orange};
+    transition: width 0.22s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
   }
 `;
 
 const NavLink = styled(Link)`
-  color: ${theme.colors.cream};
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, color 0.2s ease;
+  ${baseLinkStyle}
+  color: ${(p) => (p.$onLight ? theme.colors.ink : theme.colors.paper)};
 
   &:hover {
-    opacity: 1;
-    color: ${theme.colors.coral};
+    color: ${theme.colors.orange};
   }
 `;
 
 const NavAnchor = styled.a`
-  color: ${theme.colors.cream};
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  opacity: 0.85;
+  ${baseLinkStyle}
+  color: ${(p) => (p.$onLight ? theme.colors.ink : theme.colors.paper)};
   cursor: pointer;
-  transition: opacity 0.2s ease, color 0.2s ease;
 
   &:hover {
-    opacity: 1;
-    color: ${theme.colors.coral};
+    color: ${theme.colors.orange};
   }
 `;
 
@@ -74,6 +111,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const onLight = scrolled || location.pathname !== '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -83,14 +121,17 @@ export default function Nav() {
 
   return (
     <Bar $scrolled={scrolled}>
-      <Logo to="/">CP</Logo>
+      <LogoMark to="/" $onLight={onLight}>
+        <span><Dot />CP</span>
+        <span>VOL.01</span>
+      </LogoMark>
       <Links>
-        <NavLink to="/">Inicio</NavLink>
-        <NavLink to="/comunidad">Comunidad</NavLink>
+        <NavLink to="/" $onLight={onLight}>Inicio</NavLink>
+        <NavLink to="/comunidad" $onLight={onLight}>Comunidad</NavLink>
         {isHome ? (
-          <NavAnchor href="#contacto">Contacto</NavAnchor>
+          <NavAnchor href="#contacto" $onLight={onLight}>Contacto</NavAnchor>
         ) : (
-          <NavLink to="/#contacto">Contacto</NavLink>
+          <NavLink to="/#contacto" $onLight={onLight}>Contacto</NavLink>
         )}
       </Links>
     </Bar>

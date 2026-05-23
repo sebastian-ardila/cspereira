@@ -1,216 +1,509 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { theme } from '../theme';
 import WhatsAppButton from '../components/WhatsAppButton';
 
-const blobFloat = keyframes`
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -40px) scale(1.05); }
-  66% { transform: translate(-20px, 30px) scale(0.95); }
+const marqueeScroll = keyframes`
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 `;
 
-const bounce = keyframes`
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50% { transform: translateY(8px); opacity: 1; }
+const slideUp = keyframes`
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+`;
+
+const drawLine = keyframes`
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+`;
+
+const blink = keyframes`
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+`;
+
+const slideDelay = (delay) => css`
+  animation: ${slideUp} 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s both;
 `;
 
 const Hero = styled.section`
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, ${theme.colors.midnight} 0%, ${theme.colors.deepBlue} 100%);
-  color: ${theme.colors.cream};
+  background: ${theme.colors.paper};
+  color: ${theme.colors.ink};
+  padding: 120px 32px 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
-`;
-
-const Blob = styled.div`
-  position: absolute;
-  top: 10%;
-  right: 8%;
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, ${theme.colors.coral} 0%, transparent 70%);
-  opacity: 0.35;
-  border-radius: 50%;
-  filter: blur(40px);
-  animation: ${blobFloat} 14s ease-in-out infinite;
-  pointer-events: none;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    width: 280px;
-    height: 280px;
-    top: 20%;
-    right: -10%;
+    padding: 100px 18px 0;
   }
 `;
 
-const BlobTwo = styled(Blob)`
-  top: auto;
-  bottom: 5%;
-  left: 5%;
-  right: auto;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, ${theme.colors.gold} 0%, transparent 70%);
-  opacity: 0.2;
-  animation-duration: 18s;
-  animation-direction: reverse;
+const GridBg = styled.div`
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+  background-size: 8.33% 100%;
+  pointer-events: none;
+  z-index: 0;
 `;
 
-const HeroContent = styled.div`
+const HeroGrid = styled.div`
   position: relative;
   z-index: 2;
-  max-width: 800px;
-  text-align: center;
+  max-width: ${theme.maxWidth};
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+`;
+
+const TopMeta = styled.div`
+  grid-column: 1 / 13;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 28px;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: ${theme.colors.ink};
+  padding-bottom: 16px;
+  border-bottom: 1px solid ${theme.colors.ink};
+  ${slideDelay(0.1)}
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    font-size: 0.62rem;
+  }
+`;
+
+const Dot = styled.span`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: ${theme.colors.orange};
+  margin-right: 8px;
+  animation: ${blink} 1.6s ease-in-out infinite;
 `;
 
 const Eyebrow = styled.div`
-  color: ${theme.colors.gold};
-  font-size: 0.82rem;
-  letter-spacing: 0.3em;
+  grid-column: 1 / 13;
+  margin-top: 40px;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-weight: 500;
+  color: ${theme.colors.mute};
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  ${slideDelay(0.2)}
+`;
+
+const EyebrowMark = styled.span`
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: ${theme.colors.ink};
 `;
 
 const Title = styled.h1`
+  grid-column: 1 / 13;
   font-family: ${theme.fonts.display};
-  font-size: clamp(3rem, 9vw, 6.5rem);
-  font-weight: 400;
-  line-height: 1;
-  margin: 0;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-size: clamp(4rem, 17vw, 16rem);
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  margin: 24px 0 0;
+  text-transform: uppercase;
+  ${slideDelay(0.3)}
 
-  em {
+  .line1 {
+    display: block;
+  }
+
+  .line2 {
+    display: block;
+    -webkit-text-stroke: 2px ${theme.colors.ink};
+    color: transparent;
     font-style: italic;
-    color: ${theme.colors.coral};
+    font-weight: 400;
+    margin-left: 6vw;
+
+    @media (max-width: ${theme.breakpoints.mobile}) {
+      -webkit-text-stroke: 1px ${theme.colors.ink};
+      margin-left: 12vw;
+    }
+  }
+
+  .accent {
+    color: ${theme.colors.orange};
+    -webkit-text-stroke: 0;
   }
 `;
 
-const Divider = styled.div`
-  width: 64px;
-  height: 1px;
-  background: ${theme.colors.gold};
-  opacity: 0.6;
+const TitleUnderline = styled.div`
+  grid-column: 1 / 13;
+  height: 12px;
+  background: ${theme.colors.orange};
+  margin-top: 16px;
+  transform-origin: left;
+  ${slideDelay(0.5)}
+  animation-name: ${drawLine};
+`;
+
+const Lower = styled.div`
+  grid-column: 1 / 13;
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: end;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+`;
+
+const TaglineBlock = styled.div`
+  grid-column: 1 / 7;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  ${slideDelay(0.45)}
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-column: 1 / -1;
+  }
 `;
 
 const Tagline = styled.p`
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-family: ${theme.fonts.display};
   font-weight: 400;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   margin: 0;
-  opacity: 0.9;
-  letter-spacing: 0.05em;
-`;
+  max-width: 28ch;
 
-const CTA = styled.a`
-  margin-top: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 36px;
-  background: ${theme.colors.coral};
-  color: ${theme.colors.midnight};
-  border-radius: 999px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(255, 122, 107, 0.4);
-
-  &:hover {
-    background: ${theme.colors.coralDark};
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 122, 107, 0.55);
+  em {
+    font-style: italic;
+    color: ${theme.colors.orange};
   }
 `;
 
-const ScrollHint = styled.div`
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: ${theme.colors.cream};
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+const Caption = styled.div`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.6;
-  animation: ${bounce} 2s ease-in-out infinite;
+  color: ${theme.colors.mute};
+`;
+
+const CTABlock = styled.div`
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  ${slideDelay(0.55)}
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-column: 1 / -1;
+    align-items: flex-start;
+  }
+`;
+
+const CTANumber = styled.div`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: ${theme.colors.mute};
+`;
+
+const CTA = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 26px;
+  background: ${theme.colors.ink};
+  color: ${theme.colors.paper};
+  border: 2px solid ${theme.colors.ink};
+  border-radius: 2px;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+  box-shadow: 6px 6px 0 ${theme.colors.orange};
+
+  &:hover {
+    background: ${theme.colors.orange};
+    color: ${theme.colors.ink};
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 ${theme.colors.ink};
+  }
+`;
+
+const Marquee = styled.div`
+  position: relative;
+  z-index: 2;
+  margin-top: 80px;
+  background: ${theme.colors.ink};
+  color: ${theme.colors.paper};
+  border-top: 2px solid ${theme.colors.ink};
+  border-bottom: 2px solid ${theme.colors.ink};
+  overflow: hidden;
+  margin-left: -32px;
+  margin-right: -32px;
+  padding: 18px 0;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    margin-left: -18px;
+    margin-right: -18px;
+  }
+`;
+
+const MarqueeTrack = styled.div`
+  display: flex;
+  white-space: nowrap;
+  animation: ${marqueeScroll} 28s linear infinite;
+  font-family: ${theme.fonts.display};
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+`;
+
+const MarqueeItem = styled.span`
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
 
   &::after {
-    content: '↓';
-    display: block;
-    margin-top: 6px;
-    font-size: 1rem;
+    content: '✺';
+    color: ${theme.colors.orange};
+    font-size: 0.7em;
   }
 `;
 
 const Contacto = styled.section`
   background: ${theme.colors.cream};
-  padding: 96px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 120px 32px;
+  color: ${theme.colors.ink};
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: 96px 18px;
+  }
 `;
 
-const ContactoCard = styled.div`
-  max-width: 560px;
-  text-align: center;
+const ContactoInner = styled.div`
+  max-width: ${theme.maxWidth};
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: end;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+`;
+
+const ContactoLabel = styled.div`
+  grid-column: 1 / 5;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: ${theme.colors.mute};
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  &::before {
+    content: '02';
+    color: ${theme.colors.orange};
+    font-weight: 700;
+  }
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-column: 1 / -1;
+  }
+`;
+
+const ContactoBody = styled.div`
+  grid-column: 5 / 13;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  gap: 36px;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-column: 1 / -1;
+  }
 `;
 
 const ContactoTitle = styled.h2`
   font-family: ${theme.fonts.display};
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 400;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
   margin: 0;
-  color: ${theme.colors.midnight};
-  line-height: 1.1;
+  text-transform: uppercase;
+
+  em {
+    font-style: italic;
+    color: ${theme.colors.orange};
+    font-weight: 400;
+  }
 `;
 
 const ContactoText = styled.p`
   font-size: 1.05rem;
-  color: ${theme.colors.muted};
-  margin: 0 0 12px 0;
-  line-height: 1.6;
+  line-height: 1.55;
+  color: ${theme.colors.inkSoft};
+  max-width: 48ch;
+  margin: 0;
+`;
+
+const ContactoRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+`;
+
+const NumberPill = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 2px solid ${theme.colors.ink};
+  border-radius: 2px;
+  background: ${theme.colors.paper};
+  font-family: ${theme.fonts.mono};
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: ${theme.colors.orange};
+  }
+`;
+
+const OrangeStripe = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: ${theme.colors.orange};
 `;
 
 export default function Home() {
   return (
     <main>
       <Hero>
-        <Blob />
-        <BlobTwo />
-        <HeroContent>
-          <Eyebrow>Pereira · Colombia</Eyebrow>
+        <GridBg />
+        <HeroGrid>
+          <TopMeta>
+            <span><Dot />En vivo · Pereira, Colombia</span>
+            <span>04°48′N · 75°41′W</span>
+          </TopMeta>
+
+          <Eyebrow>
+            <EyebrowMark />
+            Comunidad de viajeros · Edición 2026
+          </Eyebrow>
+
           <Title>
-            Couchsurfing <em>Pereira</em>
+            <span className="line1">Couchsurfing</span>
+            <span className="line2">
+              Pereira<span className="accent">.</span>
+            </span>
           </Title>
-          <Divider />
-          <Tagline>Viaja. Comparte. Pertenece.</Tagline>
-          <CTA href="#contacto">Contáctanos →</CTA>
-        </HeroContent>
-        <ScrollHint>scroll</ScrollHint>
+
+          <TitleUnderline />
+
+          <Lower>
+            <TaglineBlock>
+              <Caption>·· Manifiesto</Caption>
+              <Tagline>
+                Viaja. Comparte. <em>Pertenece</em>.<br />
+                Una casa abierta en cada esquina.
+              </Tagline>
+            </TaglineBlock>
+
+            <CTABlock>
+              <CTANumber>→ 01 / Hablemos</CTANumber>
+              <CTA href="#contacto">
+                Ir a contacto
+                <span>↓</span>
+              </CTA>
+            </CTABlock>
+          </Lower>
+        </HeroGrid>
+
+        <Marquee>
+          <MarqueeTrack>
+            <MarqueeItem>Viaja</MarqueeItem>
+            <MarqueeItem>Comparte</MarqueeItem>
+            <MarqueeItem>Pertenece</MarqueeItem>
+            <MarqueeItem>Pereira 2026</MarqueeItem>
+            <MarqueeItem>Viaja</MarqueeItem>
+            <MarqueeItem>Comparte</MarqueeItem>
+            <MarqueeItem>Pertenece</MarqueeItem>
+            <MarqueeItem>Pereira 2026</MarqueeItem>
+          </MarqueeTrack>
+        </Marquee>
       </Hero>
 
       <Contacto id="contacto">
-        <ContactoCard>
-          <ContactoTitle>¿Listo para conectarte?</ContactoTitle>
-          <ContactoText>
-            Escríbenos por WhatsApp y únete a la comunidad de viajeros y anfitriones de Pereira.
-          </ContactoText>
-          <WhatsAppButton
-            label="Chatear por WhatsApp"
-            message="¡Hola! Me gustaría saber más sobre Couchsurfing Pereira."
-          />
-        </ContactoCard>
+        <OrangeStripe />
+        <ContactoInner>
+          <ContactoLabel>Contacto</ContactoLabel>
+          <ContactoBody>
+            <ContactoTitle>
+              Escríbenos.<br />Te <em>esperamos</em>.
+            </ContactoTitle>
+            <ContactoText>
+              No hay formularios largos ni listas de espera. Un mensaje por
+              WhatsApp y te conectamos con la comunidad de Couchsurfing Pereira.
+            </ContactoText>
+            <ContactoRow>
+              <WhatsAppButton
+                label="Hablar por WhatsApp"
+                message="¡Hola! Me gustaría saber más sobre Couchsurfing Pereira."
+              />
+              <NumberPill>+57 317 782 2100</NumberPill>
+            </ContactoRow>
+          </ContactoBody>
+        </ContactoInner>
       </Contacto>
     </main>
   );
